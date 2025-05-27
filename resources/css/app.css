@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'flowbite/dist/flowbite.min.css';
+
+@layer components {
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px white inset !important;
+        /* Белый фон */
+        -webkit-text-fill-color: #000 !important;
+        /* Цвет текста */
+    }
+
+    /* Темная тема (если используется) */
+    .dark input:-webkit-autofill,
+    .dark input:-webkit-autofill:hover,
+    .dark input:-webkit-autofill:focus,
+    .dark input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px rgb(55 65 81) inset !important;
+        /* bg-gray-700 */
+        -webkit-text-fill-color: #fff !important;
+    }
+}

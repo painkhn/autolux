@@ -1,0 +1,1 @@
+<button type="{{ $type }}" class="font-semibold px-4 py-2 border border-black/20 dark:border-white/20 transition-all hover:border-black/40 hover:dark:border-white/40 text-sm text-black dark:text-white">{{ $value }}</button>
