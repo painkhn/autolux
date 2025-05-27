@@ -9,4 +9,24 @@ class Cart extends Model
 {
     /** @use HasFactory<\Database\Factories\CartFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'car_id',
+        'quantity',
+    ];
+
+    protected $casts = [
+        'options' => 'array'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
 }

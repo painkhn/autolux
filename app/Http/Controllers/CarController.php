@@ -29,6 +29,10 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('cars', 'public');
+        }
         Car::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -44,6 +48,7 @@ class CarController extends Controller
             'color' => $request->color,
             'body_type' => $request->body_type,
             'brand_id' => $request->brand_id,
+            'image' => $imagePath,
         ]);
 
         return redirect()->back()->with('success', 'Автомобиль успешно добавлен');

@@ -2,6 +2,12 @@
 
 @section('content')
     <div>
-        asd
+        <ul>
+            @foreach ($cars as $car)
+                <div>
+                    {{ $car->title }}
+                </div>
+            @endforeach
+        </ul>
     </div>
 @endsection

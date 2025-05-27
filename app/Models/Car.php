@@ -30,7 +30,8 @@ class Car extends Model
         'color',
         'body_type',
         'status',
-        'brand_id'
+        'brand_id',
+        'image'
     ];
 
     /**

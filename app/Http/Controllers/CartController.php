@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -13,7 +16,22 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $cartItems = Auth::user()->cartItems()->with('car')->get();
+        return view('pages.cart', compact('cartItems'));
+    }
+
+    public function add(Car $car, Request $request)
+    {
+        $user = Auth::user();
+        
+        $cartItem = Cart::firstOrCreate(
+            ['user_id' => $user->id, 'car_id' => $car->id],
+            ['quantity' => 0]
+        );
+
+        $cartItem->increment('quantity');
+        
+        return back()->with('success', 'Авто добавлено в корзину');
     }
 
     /**
