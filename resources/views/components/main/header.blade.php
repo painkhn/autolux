@@ -1,8 +1,22 @@
 <header class="w-full dark:bg-[#14181d]">
-    <div class="max-w-7xl w-full min-h-20 mx-auto flex items-center px-5 justify-between">
+    <div class="max-w-7xl w-full min-h-20 mx-auto grid grid-cols-3 items-center px-5 justify-between">
         <x-logo />
 
-        <div class="flex items-center">
+        @auth
+            @if (auth()->user()->role === 'admin')
+                <ul class="justify-self-center">
+                    <li>
+                        <a href="{{ route('admin.index') }}" class="font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
+                            Панель администратора
+                        </a>
+                    </li>
+                </ul>
+            @endif
+        @else
+            <div class="justify-self-center"></div>
+        @endauth
+
+        <div class="flex items-center justify-self-end">
             @if (auth()->user())
                 <button type="button" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"  class="font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80 mr-4">
                     {{ auth()->user()->name }}

@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Car;
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
+
+class CarController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreCarRequest $request)
+    {
+        Car::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'mileage' => $request->mileage,
+            'year' => $request->year,
+            'vin_code' => $request->vin_code,
+            'engine_type' => $request->engine_type,
+            'engine_power' => $request->engine_power,
+            'engine_volume' => $request->engine_volume,
+            'transmission' => $request->transmission,
+            'drive_type' => $request->drive_type,
+            'color' => $request->color,
+            'body_type' => $request->body_type,
+            'brand_id' => $request->brand_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Автомобиль успешно добавлен');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Car $car)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Car $car)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateCarRequest $request, Car $car)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Car $car)
+    {
+        //
+    }
+}

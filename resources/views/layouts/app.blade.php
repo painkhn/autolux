@@ -30,7 +30,7 @@
         <x-header />
 
         <!-- Page Content -->
-        <main class="max-w-7xl w-full px-5 mx-auto">
+        <main class="max-w-7xl w-full px-5 mx-auto py-5">
             @yield('content')
         </main>
     </body>
