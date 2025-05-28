@@ -79,7 +79,7 @@
                             Мощность двигателя
                         </li>
                         <li class="w-2/3">
-                            {{ $car->engine_power }} лс
+                            {{ $car->engine_power }} л.с.
                         </li>
                     </ul>
                     <hr class="border-black">
@@ -103,7 +103,13 @@
                             Привод
                         </li>
                         <li class="w-2/3">
-                            {{ $car->drive_type }}
+                            @if ($car->drive_type === 'front')
+                                <span>Передний</span>
+                            @elseif ($car->drive_type === 'rear')
+                                <span>Задний</span>
+                            @elseif ($car->drive_type === 'four')
+                                <span>Полный</span>
+                            @endif
                         </li>
                     </ul>
                     <hr class="border-black">
