@@ -2,8 +2,10 @@
 
 @section('content')
     <div>
-        <div class="w-full relative overflow-hidden">
-            <img src="{{ asset('storage/' . $car->image) }}" alt="" class="-mt-40 w-full">
+        <div class="w-full relative">
+            <div class="w-full h-[500px] overflow-hidden">
+                <img src="{{ asset('storage/' . $car->image) }}" alt="" class="-mt-40 w-full">
+            </div>
             <div class="grid grid-cols-3 items-center justify-between p-5 bg-gray-200 dark:bg-[#14181d] rounded-xl mb-5">
                 <img src="{{ asset('storage/' . $car->brand->image) }}" alt="" class="w-20">
                 <h2 class="text-4xl font-black uppercase text-black dark:text-white justify-self-center">
