@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(HomeController::class)->group(function() {
     Route::get('/', 'shop')->name('home');
 });
+Route::controller(CarController::class)->group(function() {
+    Route::get('/car/{id}', 'show')->name('car.show');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

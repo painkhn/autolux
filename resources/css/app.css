@@ -25,3 +25,13 @@
         -webkit-text-fill-color: #fff !important;
     }
 }
+
+/*Убрать полосу прокрутки у элемента*/
+.element::-webkit-scrollbar {
+    width: 0;
+}
+
+/*Убрать полосу прокрутки для всей страницы*/
+::-webkit-scrollbar {
+    width: 0;
+}
