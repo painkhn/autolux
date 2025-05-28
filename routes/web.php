@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(CartController::class)->group(function() {
         Route::get('/cart', 'index')->name('cart.index');
+        Route::post('/cart/add/{car}', 'add')->name('cart.add');
     });
     // Route::middleware(isAdmin::class)->group(function() {
     //     Route::controller(AdminController)

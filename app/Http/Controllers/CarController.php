@@ -29,10 +29,10 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('cars', 'public');
-        }
+        // $validated = $request->validated();
+
+        $imagePath = $request->file('image')->store('cars', 'public');
+
         Car::create([
             'title' => $request->title,
             'description' => $request->description,
