@@ -17,7 +17,10 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Auth::user()->cartItems()->with('car')->get();
-        return view('pages.cart', compact('cartItems'));
+        $totalPrice = $cartItems->sum(function($item) {
+            return $item->car->price * $item->quantity;
+        });
+        return view('pages.cart', compact('cartItems', 'totalPrice'));
     }
 
     public function add(Car $car, Request $request)
@@ -32,6 +35,14 @@ class CartController extends Controller
         $cartItem->increment('quantity');
         
         return back()->with('success', 'Авто добавлено в корзину');
+    }
+
+    public function clear()
+    {
+        $user = Auth::user();
+        Cart::where('user_id', $user->id)->delete();
+
+        return back()->with('success', 'Корзина очищена');
     }
 
     /**

@@ -44,9 +44,11 @@
                                     <div class="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden">
                                         <input type="image" src="{{ asset('storage/' . $car->brand->image) }}" alt="{{ $car->brand->title }}" class="h-10 cursor-default">
                                     </div>
-                                    {{ $car->brand->title }}
+                                    <h3 class="font-semibold">
+                                        {{ $car->brand->title }}
+                                    </h3>
                                 </div>
-                                <div class="flex items-center gap-x-2">
+                                <div class="flex items-center gap-x-2 opacity-80">
                                     <h3>
                                         {{ $car->title }}
                                     </h3>
@@ -64,5 +66,49 @@
                 @endforeach
             </ul>
         </div>
+        
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            ID заказа
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Адрес
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Клиент
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Общая сумма заказа
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                # {{ $order->id }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $order->address }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <button data-modal-target="order-user-modal" data-modal-toggle="order-user-modal">
+                                    {{ $order->user->name }}
+                                </button>
+                                <x-order-user-data :user="$order->user" :order="$order" />
+                            </td>
+                            <td class="px-6 py-4">
+                                $2999
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </div>
 @endsection

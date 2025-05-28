@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function() {
         Route::get('/cart', 'index')->name('cart.index');
         Route::post('/cart/add/{car}', 'add')->name('cart.add');
+        Route::delete('/cart/clear', 'clear')->name('cart.clear');
+    });
+
+    Route::controller(OrderController::class)->group(function() {
+        Route::post('/order/store', 'store')->name('order.store');
     });
     // Route::middleware(isAdmin::class)->group(function() {
     //     Route::controller(AdminController)
