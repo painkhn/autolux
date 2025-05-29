@@ -12,8 +12,8 @@ class AdminController extends Controller
     {
         $brands = Brand::all();
         $cars = Car::with('brand')->get();
-        $orders = Order::with('user')->get();
-        // dd($cars);
+        $orders = Order::with('user')->with('car')->get();
+        // dd($orders);
         return view('pages.admin', compact('brands', 'cars', 'orders'));
     }
 }

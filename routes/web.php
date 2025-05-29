@@ -52,6 +52,12 @@ Route::middleware('auth')->group(function () {
         Route::controller(CarController::class)->group(function() {
             Route::post('/car/store', 'store')->name('car.store');
         });
+        Route::controller(OrderController::class)->group(function() {
+            Route::patch('/order/{id}/confirm', 'confirm')->name('order.confirm');
+            Route::patch('/order/{id}/complete', 'complete')->name('order.complete');
+            Route::patch('/order/{id}/cancel', 'cancel')->name('order.cancel');
+            Route::patch('/order/{id}/pending', 'pending')->name('order.pending');
+        }); 
     });
 });
 

@@ -31,6 +31,6 @@ class Order extends Model
 
     public function car()
     {
-        return $this->hasMany(Car::class);
+        return $this->belongsTo(Car::class);
     }
 }

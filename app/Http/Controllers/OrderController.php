@@ -81,6 +81,45 @@ class OrderController extends Controller
         }
     }
 
+    public function confirm($id)
+    {
+        $order = Order::where('id', $id);
+        $order->update([
+            'status' => 'confirmed'
+        ]);
+
+        return redirect()->back()->with('status', 'Заказ успешно подтверждён');
+    }
+
+    public function complete($id)
+    {
+        $order = Order::where('id', $id);
+        $order->update([
+            'status' => 'completed'
+        ]);
+
+        return redirect()->back()->with('status', 'Заказ успешно выполнен');
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::where('id', $id);
+        $order->update([
+            'status' => 'canceled'
+        ]);
+
+        return redirect()->back()->with('status', 'Заказ успешно отменён');
+    }
+
+    public function pending($id)
+    {
+        $order = Order::where('id', $id);
+        $order->update([
+            'status' => 'pending'
+        ]);
+
+        return redirect()->back()->with('status', 'Заказ успешно возвращён');
+    }
     /**
      * Display the specified resource.
      */

@@ -12,7 +12,7 @@
                     {{ $car->title }}
                 </h2>
                 <p class="my-5 text-2xl font-semibold justify-self-end text-black dark:text-white">
-                    {{ $car->price }} <span class="text-blue-700">₽</span>
+                    {{ number_format($car->price, 0, '', ' ') }} <span class="text-blue-700 dark:text-blue-600">₽</span>
                 </p>
             </div>
             <form method="POST" action="{{ route('cart.add', ['car' => $car->id]) }}">

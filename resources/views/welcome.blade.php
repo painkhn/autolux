@@ -47,7 +47,7 @@
                             <img src="{{ asset('storage/' . $car->image) }}" alt="" class="max-w-[300px] w-full">
                         </div>
                         <h3 class="text-black dark:text-white text-lg font-semibold">
-                            {{ $car->title }} | <span>{{ $car->price }} ₽</span>
+                            {{ $car->title }} | <span>{{ number_format($car->price, 0, '', ' ') }} ₽</span>
                         </h3>
                     </div>
                 </a>

@@ -76,6 +76,7 @@
                         <th scope="col" class="px-6 py-3">Адрес</th>
                         <th scope="col" class="px-6 py-3">Клиент</th>
                         <th scope="col" class="px-6 py-3">Общая сумма заказа</th>
+                        <th scope="col" class="px-6 py-3">Статус заказа</th>
                         <th scope="col" class="px-6 py-3"></th>
                     </tr>
                 </thead>
@@ -94,6 +95,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ number_format($order->total_price, 0, '', ' ') }} ₽
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $order->status }}
                             </td>
                             <td class="px-6 py-4 relative">
                                 <!-- Кнопка с уникальным ID -->
@@ -126,6 +130,60 @@
                                                 <p>
                                                     Заказ  #{{ $order->id }}
                                                 </p>
+                                                <p>
+                                                    Авто:
+                                                </p>
+                                                <div>
+                                                    <a href="{{ route('car.show', ['id' => $order->car->id]) }}">
+                                                        <div class="p-5 flex justify-between text-black dark:text-white border border-black/20 dark:border-white/20 rounded-md transition-all hover:border-black/40 hover:dark:border-white/40">
+                                                            <div class="space-y-2 w-1/2">
+                                                                <div class="flex items-center gap-5">
+                                                                    <div class="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden">
+                                                                        <input type="image" src="{{ asset('storage/' . $order->car->brand->image) }}" alt="{{ $order->car->brand->title }}" class="h-10 cursor-default">
+                                                                    </div>
+                                                                    <h3 class="font-semibold">
+                                                                        {{ $order->car->brand->title }}
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="flex items-center gap-x-2 opacity-80">
+                                                                    <h3>
+                                                                        {{ $order->car->title }}
+                                                                    </h3>
+                                                                    |
+                                                                    <p>
+                                                                        {{ $order->car->price }} ₽
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    @if ($order->status === 'pending')
+                                                        <form method="post" action="{{ route('order.confirm', ['id' => $order->id]) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="PATCH">
+                                                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Подтвердить заказ</button>
+                                                        </form>
+                                                        <form method="post" action="{{ route('order.cancel', ['id' => $order->id]) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="PATCH">
+                                                            <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Отменить заказ</button>
+                                                        </form>
+                                                    @elseif ($order->status === 'confirmed')
+                                                        <form method="post" action="{{ route('order.complete', ['id' => $order->id]) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="PATCH">
+                                                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Заказ выполнен</button>
+                                                        </form>
+                                                    @elseif ($order->status === 'canceled')
+                                                        <form method="post" action="{{ route('order.pending', ['id' => $order->id]) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="PATCH">
+                                                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Вернуть заказ</button>
+                                                        </form>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
