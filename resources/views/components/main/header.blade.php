@@ -11,6 +11,8 @@
                         </a>
                     </li>
                 </ul>
+            @else
+                <div class="justify-self-center"></div>
             @endif
         @else
             <div class="justify-self-center"></div>

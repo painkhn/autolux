@@ -133,7 +133,7 @@
                                     <x-input id="vin_code" type="text" name="vin_code" placeholder="Введите VIN-код авто" />
                                 </div>
                                 <div>
-                                    <x-label for="image" value="Логотип" />
+                                    <x-label for="image" value="Изображение" />
                                     <input id="image" name="image" type="file" class="flex items-center w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                                 </div>
                             </div>

@@ -44,7 +44,6 @@
                 </a>
                 @endif
             </div>
-
         </form>
         
         @if($cars->isEmpty())

@@ -16,7 +16,7 @@ class FavoriteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $favorites = Favorite::with('car')->where('user_id', $user->id)->get();
+        $favorites = Favorite::with('car')->where('user_id', $user->id)->take(2)->get();
         return view('pages.favorites', compact('favorites'));
     }
 
