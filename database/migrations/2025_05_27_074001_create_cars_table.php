@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('vin_code')->unique();
             $table->string('image');
 
+            $table->boolean('is_favorite')->default(false);
+
             $table->enum('engine_type', ['diesel', 'petrol', 'electric', 'hybrid']); // дизель, бензин, электро, гибрид
             $table->decimal('engine_volume', 3, 1); // объём двигателя
             $table->integer('engine_power'); // мощность в лошадках

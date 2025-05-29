@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/cart/add/{car}', 'add')->name('cart.add');
         Route::delete('/cart/clear', 'clear')->name('cart.clear');
     });
+
+    Route::controller(FavoriteController::class)->group(function() {
+        Route::get('/favorites', 'index')->name('favorite.index');
+        Route::post('/favorite/car/{id}/store', 'store')->name('favorite.store');
+        Route::delete('/favorites/clear', 'clear')->name('favorite.clear');
+    }); 
 
     Route::controller(OrderController::class)->group(function() {
         Route::post('/order/store', 'store')->name('order.store');

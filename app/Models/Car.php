@@ -31,7 +31,8 @@ class Car extends Model
         'body_type',
         'status',
         'brand_id',
-        'image'
+        'image',
+        'is_favorite'
     ];
 
     /**
@@ -54,14 +55,6 @@ class Car extends Model
         return number_format($this->price, 0, '', ' ') . ' ₽';
     }
 
-    /**
-     * Get short year (только год без месяца и дня).
-     */
-    public function getYearOnlyAttribute(): string
-    {
-        return $this->year->format('Y');
-    }
-
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -70,5 +63,10 @@ class Car extends Model
     public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
     }
 }
