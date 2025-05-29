@@ -37,6 +37,10 @@ $ php artisan key:generate
 ```sh
 $ php artisan migrate
 ```
+Создать локальное хранилище
+```sh
+$ php artisan storage:link
+```
 ### Запуск приложения 
 Для запуска приложения необходимо запустить 2 сервера командами: 
 ```sh
