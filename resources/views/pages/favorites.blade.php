@@ -12,7 +12,7 @@
         </button>
     </form>
     @if ($favorites->count() > 0)
-        <ul class="grid grid-cols-3">
+        <ul class="grid grid-cols-3 gap-10">
             @foreach ($favorites as $favorite)
                 <li class="relative">
                     <form method="post" action="{{ route('favorite.store', ['id' => $favorite->car->id]) }}" class="absolute top-4 right-4 z-20">
