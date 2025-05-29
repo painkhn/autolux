@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex gap-10">
-        <div class="w-2/3 space-y-10">
+    <div class="flex gap-10 max-[1000px]:flex-col">
+        <div class="w-2/3 space-y-10 max-[1000px]:w-full">
             <form method="post" action="{{ route('cart.clear') }}">
                 <input type="hidden" name="_method" value="DELETE">
                 @csrf
@@ -13,7 +13,7 @@
                     <span>Очистить корзину</span>
                 </button>
             </form>
-            <ul class="grid grid-cols-2 gap-10">
+            <ul class="grid grid-cols-2 max-[840px]:grid-cols-1 gap-10">
                 @if ($cartItems->count() > 0)
                     @foreach ($cartItems as $item)
                         <div class="p-5 border border-black/20 dark:border-black bg-gray-200 dark:bg-[#14181d] rounded-md transition-all shadow-black hover:shadow-xl relative">
@@ -42,7 +42,7 @@
                 @endif
             </ul>
         </div>
-        <div class="w-1/3">
+        <div class="w-1/3 max-[1000px]:w-full">
             <div class="w-full p-5 bg-gray-200 dark:bg-[#14181d] rounded-md border-black/20 dark:border-black border text-black dark:text-white space-y-2">
                 <p class="font-semibold">
                     Автомобилей в корзине: <span>{{ $cartItems->count() }}</span>

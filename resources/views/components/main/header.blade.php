@@ -1,17 +1,10 @@
 <header class="w-full dark:bg-[#14181d]">
-    <div class="max-w-7xl w-full min-h-20 mx-auto grid grid-cols-3 items-center px-5 justify-between">
-        <x-logo />
+    <div class="max-w-7xl w-full min-h-20 mx-auto grid grid-cols-3 max-[470px]:grid-cols-1 gap-y-2 max-[470px]:py-5 items-center px-5 justify-between">
+        <div class="max-[470px]:justify-self-center">
+            <x-logo />
+        </div>
 
         <ul class="justify-self-center flex items-center gap-5">
-            @auth
-                @if (auth()->user()->role === 'admin')
-                <li>
-                    <a href="{{ route('admin.index') }}" class="font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
-                        Панель администратора
-                    </a>
-                </li>
-                @endif
-            @endauth
             <li class="justify-self-center font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
                 <a href="{{ route('shop') }}">
                     Магазин
@@ -19,7 +12,7 @@
             </li>
         </ul>
 
-        <div class="flex items-center justify-self-end">
+        <div class="flex items-center justify-self-end max-[470px]:justify-self-center">
             @auth
                 <ul class="flex items-center gap-4">
                     <li class="flex items-center">

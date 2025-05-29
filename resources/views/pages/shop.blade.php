@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="space-y-5">
-        <form action="{{ route('shop') }}" method="GET" class="w-full p-4 bg-gray-200 dark:bg-[#14181d] border border-black/20 dark:border-black rounded-md flex items-center gap-4 justify-between">
+        <form action="{{ route('shop') }}" method="GET" class="w-full p-4 bg-gray-200 dark:bg-[#14181d] border border-black/20 dark:border-black rounded-md flex items-center gap-4 justify-between max-[780px]:flex-col">
             
             <div class="w-full">   
                 <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -16,8 +16,8 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
-                <select name="brand" id="brands" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <div class="flex items-center gap-4 max-[780px]:w-full max-[470px]:flex-wrap">
+                <select name="brand" id="brands" class="max-[470px]:grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] max-[780px]:w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">Все марки</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->id }}" {{ request('brand') == $brand->id ? 'selected' : '' }}>
@@ -26,7 +26,7 @@
                     @endforeach
                 </select>
 
-                <select name="sort" id="sort" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select name="sort" id="sort" class="max-[470px]:flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">Сортировка</option>
                     <option value="new" {{ request('sort') == 'new' ? 'selected' : '' }}>Сначала новые</option>
                     <option value="old" {{ request('sort') == 'old' ? 'selected' : '' }}>Сначала старые</option>

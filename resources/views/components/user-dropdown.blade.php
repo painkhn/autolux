@@ -10,9 +10,11 @@
         <li>
             <a href="{{ route('profile.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Настройки</a>
         </li>
-        <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-        </li>
+        @if (auth()->user()->role === 'admin')
+            <li>
+                <a href="{{ route('admin.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Панель админа</a>
+            </li>
+        @endif
     </ul>
     <div class="py-2">
         <form method="post" action="{{ route('logout') }}">

@@ -26,7 +26,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased w-full min-h-screen bg-white dark:bg-[#374151]">
+    <body class="font-sans antialiased w-full min-h-screen min-w-[300px] bg-white dark:bg-[#374151]">
         <x-header />
 
         <!-- Page Content -->
