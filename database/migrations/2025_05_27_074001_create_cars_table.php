@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->integer('mileage')->default(0);
-            $table->date('year');
+            $table->integer('year');
             $table->string('vin_code')->unique();
             $table->string('image');
 

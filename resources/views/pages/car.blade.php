@@ -44,7 +44,7 @@
                             Год выпуска
                         </li>
                         <li class="w-2/3">
-                            {{ $car->year }} г. (фиксану)
+                            {{ $car->year }} г.
                         </li>
                     </ul>
                     <hr class="border-black">

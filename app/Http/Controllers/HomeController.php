@@ -10,10 +10,36 @@ class HomeController extends Controller
 {
     //
 
-    public function shop()
+    public function shop(Request $request)
     {
+        $query = Car::query()->with('brand');
+    
+    // Поиск по названию
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        // Фильтрация по марке
+        if ($request->has('brand') && $request->input('brand') != '') {
+            $query->where('brand_id', $request->input('brand'));
+        }
+        
+        // Сортировка по году выпуска
+        if ($request->has('sort')) {
+            if ($request->input('sort') == 'new') {
+                $query->orderBy('year', 'desc');
+            } elseif ($request->input('sort') == 'old') {
+                $query->orderBy('year', 'asc');
+            }
+        } else {
+            // Сортировка по умолчанию
+            $query->orderBy('created_at', 'desc');
+        }
+        
+        $cars = $query->paginate(12);
         $brands = Brand::all();
-        $cars = Car::where('status', 'available')->get();
+        
         return view('welcome', compact('cars', 'brands'));
     }
 }

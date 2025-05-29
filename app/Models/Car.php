@@ -40,7 +40,6 @@ class Car extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'year' => 'date:Y', // Форматируем год как YYYY
         'engine_volume' => 'decimal:1', // Сохраняем 1 знак после запятой
         'price' => 'integer', // Для точных расчетов
         'mileage' => 'integer',
