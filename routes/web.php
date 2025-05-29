@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::controller(BrandController::class)->group(function() {
             Route::post('/brand/store', 'store')->name('brand.store');
+            Route::patch('/brand/{id}/update', 'update')->name('brand.update');
         });
         Route::controller(CarController::class)->group(function() {
             Route::post('/car/store', 'store')->name('car.store');

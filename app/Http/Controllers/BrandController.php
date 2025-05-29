@@ -63,9 +63,19 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, $id)
     {
-        //
+        $brand = Brand::where('id', $id)->first();
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('brands', 'public');
+        }
+        $brand->update([
+            'title' => $request->title,
+            'image' => $imagePath
+        ]);
+
+        return redirect()->back()->with('success', 'Марка успешно обновлена');
     }
 
     /**

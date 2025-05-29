@@ -20,16 +20,17 @@
             <ul class="text-black dark:text-white font-semibold flex items-center gap-8">
                 @foreach ($brands as $brand)
                     <li>
-                        <div class="flex items-center gap-4">
+                        <button data-modal-target="brand-edit-modal-{{ $brand->id }}" data-modal-toggle="brand-edit-modal-{{ $brand->id }}" class="flex items-center gap-4">
                             @if ($brand->image)
                                 <div class="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden">
-                                    <input type="image" src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->title }}" class="h-10 cursor-default">
+                                    <input type="image" src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->title }}" class="h-10">
                                 </div>
                             @else
                                 <div></div>
                             @endif
                             {{ $brand->title }}
-                        </div>
+                        </button>
+                        <x-brand-edit-modal title="brand-edit-modal-{{ $brand->id }}" :brand="$brand" />
                     </li>
                 @endforeach
             </ul>
