@@ -15,15 +15,17 @@
                     {{ number_format($car->price, 0, '', ' ') }} <span class="text-blue-700 dark:text-blue-600">₽</span>
                 </p>
             </div>
-            <form method="POST" action="{{ route('cart.add', ['car' => $car->id]) }}">
-                @csrf
-                <button type="submit" class="w-full flex items-center justify-center gap-2 py-3.5 text-lg font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
-                    </svg>
-                    <span>Добавить в корзину</span>
-                </button>
-            </form>
+            @auth
+                <form method="POST" action="{{ route('cart.add', ['car' => $car->id]) }}">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 py-3.5 text-lg font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+                        </svg>
+                        <span>Добавить в корзину</span>
+                    </button>
+                </form>
+            @endauth
         </div>
 
         <div class="py-10">

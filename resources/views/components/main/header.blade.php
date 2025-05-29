@@ -2,21 +2,22 @@
     <div class="max-w-7xl w-full min-h-20 mx-auto grid grid-cols-3 items-center px-5 justify-between">
         <x-logo />
 
-        @auth
-            @if (auth()->user()->role === 'admin')
-                <ul class="justify-self-center">
-                    <li>
-                        <a href="{{ route('admin.index') }}" class="font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
-                            Панель администратора
-                        </a>
-                    </li>
-                </ul>
-            @else
-                <div class="justify-self-center"></div>
-            @endif
-        @else
-            <div class="justify-self-center"></div>
-        @endauth
+        <ul class="justify-self-center flex items-center gap-5">
+            @auth
+                @if (auth()->user()->role === 'admin')
+                <li>
+                    <a href="{{ route('admin.index') }}" class="font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
+                        Панель администратора
+                    </a>
+                </li>
+                @endif
+            @endauth
+            <li class="justify-self-center font-semibold text-black dark:text-white transition-all hover:underline hover:opacity-80">
+                <a href="{{ route('shop') }}">
+                    Магазин
+                </a>
+            </li>
+        </ul>
 
         <div class="flex items-center justify-self-end">
             @auth

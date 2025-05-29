@@ -10,6 +10,12 @@ class HomeController extends Controller
 {
     //
 
+    public function home()
+    {
+        $cars = Car::all();
+        return view('welcome', compact('cars'));
+    }
+
     public function shop(Request $request)
     {
         $query = Car::query()->with('brand');
@@ -40,6 +46,6 @@ class HomeController extends Controller
         $cars = $query->paginate(12);
         $brands = Brand::all();
         
-        return view('welcome', compact('cars', 'brands'));
+        return view('pages.shop', compact('cars', 'brands'));
     }
 }

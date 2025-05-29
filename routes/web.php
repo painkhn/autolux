@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 
 Route::controller(HomeController::class)->group(function() {
-    Route::get('/', 'shop')->name('home');
+    Route::get('/', 'home')->name('home');
+    Route::get('/shop', 'shop')->name('shop');
 });
+
 Route::controller(CarController::class)->group(function() {
     Route::get('/car/{id}', 'show')->name('car.show');
 });

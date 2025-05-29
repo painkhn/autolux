@@ -16,8 +16,8 @@ class FavoriteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $favorites = Favorite::with('car')->where('user_id', $user->id)->take(2)->get();
-        return view('pages.favorites', compact('favorites'));
+        $favorites = Favorite::with('car')->where('user_id', $user->id)->get();
+        return view('pages.favorites', compact('favorites', 'user'));
     }
 
     /**
@@ -47,9 +47,9 @@ class FavoriteController extends Controller
 
 
         if ($favorite) { // Если уже в избранном, то удаляем
-            $car->update([
-                'is_favorite' => false
-            ]);
+            // $car->update([
+            //     'is_favorite' => false
+            // ]);
             $favorite->delete();
             return redirect()->back()->with('success', 'Авто удалено из избранного');
         } else {
@@ -58,9 +58,9 @@ class FavoriteController extends Controller
                 'user_id' => $user->id,
                 'car_id' => $car->id,
             ]);
-            $car->update([
-                'is_favorite' => true
-            ]);
+            // $car->update([
+            //     'is_favorite' => true
+            // ]);
             return redirect()->back()->with('success', 'Авто добавлено в избранное');
         }
     }
