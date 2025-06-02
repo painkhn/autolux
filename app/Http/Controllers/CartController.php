@@ -18,7 +18,7 @@ class CartController extends Controller
     {
         $cartItems = Auth::user()->cartItems()->with('car')->get();
         $totalPrice = $cartItems->sum(function($item) {
-            return $item->car->price * $item->quantity;
+            return $item->car->price;
         });
         return view('pages.cart', compact('cartItems', 'totalPrice'));
     }
@@ -28,11 +28,8 @@ class CartController extends Controller
         $user = Auth::user();
         
         $cartItem = Cart::firstOrCreate(
-            ['user_id' => $user->id, 'car_id' => $car->id],
-            ['quantity' => 0]
+            ['user_id' => $user->id, 'car_id' => $car->id]
         );
-
-        $cartItem->increment('quantity');
         
         return back()->with('success', 'Авто добавлено в корзину');
     }

@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::controller(CarController::class)->group(function() {
             Route::post('/car/store', 'store')->name('car.store');
+            Route::patch('/car/{car}/price/update', 'updatePrice')->name('car.update.price');
         });
         Route::controller(OrderController::class)->group(function() {
             Route::patch('/order/{id}/confirm', 'confirm')->name('order.confirm');

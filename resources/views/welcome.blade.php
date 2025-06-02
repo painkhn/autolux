@@ -8,6 +8,7 @@
         <h1 class="text-black dark:text-white text-6xl font-black">AUTOLUX</h1>
         <p class="text-xl text-black dark:text-white opacity-80">Автосалон для тех, кто знает чего хочет</p>
     </div>
+    <h2 class="text-black dark:text-white font-semibold text-center mb-5">Несколько автомобилей из нашей коллекции</h2>
     <ul class="grid grid-cols-3 gap-5 mb-10">
         @foreach ($cars->take(3) as $car)
             <li>

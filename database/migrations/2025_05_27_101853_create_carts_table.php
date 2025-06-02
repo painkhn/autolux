@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('car_id')->constrained()->cascadeOnDelete();
-            $table->unsignedInteger('quantity')->default(1);
             $table->timestamps();
             
             $table->unique(['user_id', 'car_id']); // Уникальная пара, чтобы избежать дубликатов

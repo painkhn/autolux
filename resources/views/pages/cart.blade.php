@@ -24,9 +24,6 @@
                                 <h3 class="text-black dark:text-white text-lg font-semibold">
                                     {{ $item->car->title }} | <span>{{ $item->car->price }} ₽</span>
                                 </h3>
-                                <p class="text-black dark:text-white font-semibold opacity-50">
-                                    Количество: {{ $item->quantity }}
-                                </p>
                             </div>
                         </div>
                     @endforeach

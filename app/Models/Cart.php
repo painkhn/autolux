@@ -13,7 +13,6 @@ class Cart extends Model
     protected $fillable = [
         'user_id',
         'car_id',
-        'quantity',
     ];
 
     protected $casts = [

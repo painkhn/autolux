@@ -12,13 +12,13 @@ class HomeController extends Controller
 
     public function home()
     {
-        $cars = Car::all();
+        $cars = Car::where('status', 'available')->get();
         return view('welcome', compact('cars'));
     }
 
     public function shop(Request $request)
     {
-        $query = Car::query()->with('brand');
+        $query = Car::query()->with('brand')->where('status', 'available');
     
     // Поиск по названию
         if ($request->has('search')) {

@@ -43,9 +43,8 @@ class OrderController extends Controller
                 return redirect()->back()->with('error', 'Ваша корзина пуста');
             }
 
-            // Рассчитываем общую стоимость
             $totalPrice = $cartItems->sum(function($item) {
-                return $item->car->price * $item->quantity;
+                return $item->car->price;
             });
 
             // Создаем заказ для каждого автомобиля в корзине
@@ -61,8 +60,11 @@ class OrderController extends Controller
                     'email' => $request->email,
                     'address' => $request->address,
                     'phone_number' => $request->phone_number,
-                    'total_price' => $item->car->price * $item->quantity,
-                    'quantity' => $item->quantity, // Добавляем количество
+                    'total_price' => $totalPrice,
+                ]);
+
+                $item->car->update([
+                    'status' => 'sold'
                 ]);
             }
 

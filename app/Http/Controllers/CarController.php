@@ -75,9 +75,14 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCarRequest $request, Car $car)
+    public function updatePrice(UpdateCarRequest $request, Car $car)
     {
-        //
+        // dd($request);
+        $car->update([
+            'price' => $request->price
+        ]);
+
+        return redirect()->back()->with('status', 'Стоимость товара успешно изменена');
     }
 
     /**

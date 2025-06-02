@@ -32,7 +32,15 @@
                                 {{ number_format($order->total_price, 0, '', ' ') }} ₽
                             </td>
                             <td class="px-6 py-4">
-                                {{ $order->status }}
+                                @if ($order->status === 'pending')
+                                В ожидании
+                                @elseif ($order->status === 'confirmed')
+                                Подтверждено
+                                @elseif ($order->status === 'confirmed')
+                                Выполнено
+                                @elseif ($order->status === 'canceled')
+                                Отменено
+                                @endif
                             </td>
                         </tr>
                     @endforeach
