@@ -77,7 +77,9 @@ class CarController extends Controller
      */
     public function updatePrice(UpdateCarRequest $request, Car $car)
     {
+        // \Log::info('Updating price', ['car_id' => $car->id, 'new_price' => $request->price]);
         // dd($request);
+        
         $car->update([
             'price' => $request->price
         ]);
