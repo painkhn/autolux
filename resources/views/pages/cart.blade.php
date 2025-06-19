@@ -80,7 +80,7 @@
                     </div>
                     <div>
                         <x-label for="email" value="Электронная почта" />
-                        <x-input id="email" type="email" name="email" placeholder="Введите вашу электронную почту" />
+                        <x-input value="{{ auth()->user()->email }}" id="email" type="email" name="email" placeholder="Введите вашу электронную почту" />
                     </div>
                     <p class="opacity-80">
                         После оформления заказа мы свяжемся с вами по номеру телефона или электронной почте, чтобы подтвердить заказ.
